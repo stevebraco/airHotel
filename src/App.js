@@ -21,7 +21,7 @@ function App() {
       <Route exact path='/products' component={ProductsPage} />
       <Route exact path='/products/:id' component={SingleProductPage} />
       <Route exact path='/checkout' component={CheckoutPage} />
-      <Route  path='*' component={ErrorPage} />
+      <Route  path='*' component={ErrorPage}/>
       </Switch>
       <Footer/>
     </Router>
