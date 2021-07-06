@@ -9,7 +9,29 @@ import { useProductsContext } from '../context/products_context'
 import { useUserContext } from '../context/user_context'
 
 const Nav = () => {
-  return <h4>navbar</h4>
+  return <NavContainer>
+    <div className="nav-center">
+      <div className="nav-header">
+      <Link to='/'>
+        <img src={logo} alt="comfy"/>
+      </Link>
+      <button type='button' className='nav-toggle'>
+        <FaBars/>
+      </button>
+    </div>
+    <ul className="nav-links">
+      {links.map((link) => {
+        const {id, text, url} = link
+        return (
+          <li key={id}>
+            <Link to={url}> {text} </Link>
+          </li>
+        )
+      })}
+    </ul>
+    <CartButtons/>
+    </div>
+  </NavContainer>
 }
 
 const NavContainer = styled.nav`
@@ -17,6 +39,10 @@ const NavContainer = styled.nav`
   display: flex;
   align-items: center;
   justify-content: center;
+  background: #7592A6;
+  position: relative;
+  border-bottom: 2px solid white;
+
 
   .nav-center {
     width: 90vw;
@@ -47,7 +73,7 @@ const NavContainer = styled.nav`
   .cart-btn-wrapper {
     display: none;
   }
-  @media (min-width: 992px) {
+  @media (min-width: 800px) {
     .nav-toggle {
       display: none;
     }
@@ -59,17 +85,35 @@ const NavContainer = styled.nav`
     .nav-links {
       display: flex;
       justify-content: center;
+
       li {
         margin: 0 0.5rem;
+
       }
       a {
-        color: var(--clr-grey-3);
-        font-size: 1rem;
+        color: whitesmoke;
+        font-size: .55rem;
         text-transform: capitalize;
         letter-spacing: var(--spacing);
-        padding: 0.5rem;
-        &:hover {
-          border-bottom: 2px solid var(--clr-primary-7);
+        padding: 1rem;
+        transition: .3s;
+        border-bottom: 2px solid transparent;
+        position: relative;
+
+        &:after {
+          content: '';
+          position: absolute;
+          bottom: -.99rem;
+          left: 0;
+          width: 100%;
+          height: 0px;
+          background: white;
+          transition: .3s;
+        }
+
+        &:hover::after {
+          height: 4px;
+
         }
       }
     }
