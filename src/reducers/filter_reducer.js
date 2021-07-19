@@ -11,10 +11,16 @@ import {
 
 const filter_reducer = (state, action) => {
   if (action.type === LOAD_PRODUCTS) {
+    //Fetch all price 
+    let maxPrice = action.payload.map((p) => p.price)
+    // The maxPrice in my products
+    maxPrice = Math.max(...maxPrice)
+    console.log(maxPrice);
     return {
       ...state,
       all_products: [...action.payload],
       filtered_products: [...action.payload],
+      filters:{...state.filters, max_price: maxPrice, price: maxPrice}
     };
   }
 
@@ -46,6 +52,8 @@ const filter_reducer = (state, action) => {
       console.log('price-highest');
     }
     if(sort === 'name-a') {
+      // sort alphabetically
+      // https://stackoverflow.com/questions/6712034/sort-array-by-firstname-alphabetically-in-javascript
       tempProducts = tempProducts.sort((a,b) => {
         return a.name.localeCompare(b.name)
       })
@@ -58,6 +66,11 @@ const filter_reducer = (state, action) => {
       console.log('name-z');
     }
     return {...state, filtered_products: tempProducts}
+  }
+
+  if(action.type === UPDATE_FILTERS) {
+    const {name, value} = action.payload
+    return {...state, filters:{...state.filters,[name]:value}}
   }
 
   throw new Error(`No Matching "${action.type}" - action type`);

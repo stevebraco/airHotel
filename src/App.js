@@ -8,6 +8,7 @@ import ProductsPage from './pages/ProductsPage'
 import SingleProductPage from './pages/SingleProductPage'
 import CheckoutPage from './pages/CheckoutPage'
 import ErrorPage from './pages/ErrorPage'
+import TestPage from './pages/TestPage'
 
 function App() {
   return <div>
@@ -21,6 +22,7 @@ function App() {
       <Route exact path='/products' component={ProductsPage} />
       <Route exact path='/products/:id' component={SingleProductPage} />
       <Route exact path='/checkout' component={CheckoutPage} />
+      <Route exact path='/test' component={TestPage} />
       <Route  path='*' component={ErrorPage}/>
       </Switch>
       <Footer/>

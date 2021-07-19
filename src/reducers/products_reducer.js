@@ -9,6 +9,7 @@ import {
   GET_SINGLE_PRODUCT_ERROR,
 } from "../actions";
 
+// In action.type, always return the state {...state} (spread operator) and the update value.
 const products_reducer = (state, action) => {
   if (action.type === SIDEBAR_OPEN) {
     return { ...state, isSidebarOpen: true };
