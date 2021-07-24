@@ -29,11 +29,12 @@ const Sort = () => {
           <BsList />
         </button>
       </div>
-      <p> {products.length} products found </p>
+      <p> {products.length} products found  </p>
       <hr />
       <form>
         <label htmlFor="sort">sort by</label>
         <select name="sort" id="sort" className="sort-input" name={sort} onChange={updateSort} >
+          {/* in filter_reducer : value = e.target.value */}
           <option value="price-lowest">price (lowest)</option>
           <option value="price-highest">price (highest)</option>
           <option value="name-a">name (a-z)</option>
