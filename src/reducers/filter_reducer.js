@@ -10,16 +10,21 @@ import {
 } from "../actions";
 
 const filter_reducer = (state, action) => {
+  // When action === LOAD_PRODUCTS, I load my product
   if (action.type === LOAD_PRODUCTS) {
     //Fetch all price 
     let maxPrice = action.payload.map((p) => p.price)
-    // The maxPrice in my products
+    // Whe always search my highest price in my product
+    // Math.max for fetch the highest price
     maxPrice = Math.max(...maxPrice)
     console.log(maxPrice);
     return {
       ...state,
+      // ...action.payload = all products
       all_products: [...action.payload],
+      // we need the all product fort filter the products
       filtered_products: [...action.payload],
+      // we update the filters and the maxPrice and the price dynamically
       filters:{...state.filters, max_price: maxPrice, price: maxPrice}
     };
   }

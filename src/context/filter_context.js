@@ -40,7 +40,9 @@ export const FilterProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
   console.log(useReducer(reducer, initialState));
   useEffect(() => {
+    // We dispatch with the type LOAD_PRODUCTS, and all product in the payload
     dispatch({type: LOAD_PRODUCTS, payload: products})
+    // don't forget to put product in the array for the useEffect
   }, [products])
 
   useEffect(() => {
@@ -64,6 +66,7 @@ export const FilterProvider = ({ children }) => {
     dispatch({type: UPDATE_SORT, payload: value})
   }
 
+  
   const updateFilters = (e) => {
     let name = e.target.name
     let value = e.target.value
