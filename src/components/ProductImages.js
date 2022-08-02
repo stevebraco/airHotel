@@ -1,8 +1,21 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-
-const ProductImages = () => {
-  return <h4>product images</h4>
+// if the image is undefined, that is just going to be an empty array
+// we will need too to update the default value url
+const ProductImages = ({images = [{url: ''}]}) => {
+  // I would want to display the first image and then as i'm clicking, i'll change that state index
+  // And i'm changing that index, the value in the main one will also change
+  const [main, setMain] = useState(images[0])
+  console.log(main);
+  console.log(images);
+  return <Wrapper>
+    <img src={main.url} alt="main image" className='main' />
+    <div className="gallery">
+      {images.map((image, index) => {
+        return <img key={index} src={image.url} alt={image.filename} onClick={() => setMain(images[index])} className={`${image.url === main.url ? 'active' : null}`} />
+      })}
+    </div>
+  </Wrapper>
 }
 
 const Wrapper = styled.section`
