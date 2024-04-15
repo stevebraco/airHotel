@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useContext, useEffect, useReducer } from 'react'
 import reducer from '../reducers/products_reducer'
 import { products_url as url } from '../utils/constants'
+import { data } from '../utils/Data'
 import {
   SIDEBAR_OPEN,
   SIDEBAR_CLOSE,
@@ -45,7 +46,9 @@ export const ProductsProvider = ({ children }) => {
       dispatch({type: GET_PRODUCTS_SUCCESS, payload: products})
     
     } catch (error) {
-      dispatch({type: GET_PRODUCTS_ERROR})
+      // dispatch({type: GET_PRODUCTS_ERROR})
+      dispatch({type: GET_PRODUCTS_SUCCESS, payload: data})
+
     }
    
   }
